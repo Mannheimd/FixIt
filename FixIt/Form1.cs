@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,9 +16,9 @@ namespace WindowsFormsApplication1
         // Assign variables.
         public string selectedItem = "";
         public bool fail = false;
-        public int progress = 0;
         public int delay = 100;
         public bool success = false;
+        public int progress = 0;
 
         public Form1()
         {
@@ -32,12 +31,7 @@ namespace WindowsFormsApplication1
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            if (success == true)
-            {
-                label2.Text = "Fixed it!";
-            }
-            
+        {           
             // Reset progress bar to 0.
             progressBar1.Value = 0;
 
@@ -52,7 +46,7 @@ namespace WindowsFormsApplication1
             // Assuming input is provided, commence progress bar and update status label.
             else
             {
-                for (progress = 0; progress < 100; progress = progress + 1)
+                for (progressBar1.Value = progress; progressBar1.Value < 100; progress++)
                 {
                     // Asssign strings to status label depending on input from ComboBox.
                     // Further inputs & outputs can be provided by duplicating these statements.
@@ -60,14 +54,13 @@ namespace WindowsFormsApplication1
                     if (selectedItem == "Dry spell") { label2.Text = "Assuming position..."; }
                     if (selectedItem == "Ex wife") { label2.Text = "Arranging 'accident'..."; }
                     //if (selectedItem == "") { label2.Text = "..."; }
-
+                    
                     progressBar1.PerformStep();
 
                     if (progressBar1.Value == 100)
                     {
-                        // Inform user of successful issue fix.
-                        // label2.Text = "Fixed it!";
-                        success = true;
+                       //Inform user of successful issue fix.
+                       label2.Text = "Fixed it!";
                     }
                 }
             }
